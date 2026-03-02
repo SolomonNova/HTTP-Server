@@ -4,7 +4,6 @@
     Author: Solomon
 */
 
-#include <cstddef>
 #include <stddef.h>     // provides size_t
 #include <stdio.h>      // provides snprintf()
 #include <string.h>     
@@ -174,28 +173,27 @@ int initialize_response_header_buffer(REQUEST_INFO* ri_requestInfo)
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-int write_status_line(REQUEST_INFO* ri_requestInfo, char* buffer, size_t iOffset)
+int write_status_line(REQUEST_INFO* ri, char* buffer, size_t iOffset)
 {
-    if (!ri_requestInfo || !buffer) return -1;
+    if (!ri || !buffer) return -1;
 
 
     /* Status line format -> "version status reason\r\n" */
-    // built version and status and reason string and put them in the buffer
 
     /* choose a sensible HTTP version: echo valid request version or fall back */
     const char* version = "HTTP/1.1";
-    if (ri_requestInfo->m_szVersion &&
-        (!strcmp(ri_requestInfo->m_szVersion, "HTTP/1.0") ||
-         !strcmp(ri_requestInfo->m_szVersion, "HTTP/1.1")))
+    if (ri->m_szVersion &&
+        (!strcmp(ri->m_szVersion, "HTTP/1.0") ||
+         !strcmp(ri->m_szVersion, "HTTP/1.1")))
     {
-        version = ri_requestInfo->m_szVersion;
+        version = ri->m_szVersion;
     }
 
     /* decide status code:
        - if parser succeeded, assume 200 OK (application can override by not using this helper)
        - if parser failed, map parse result to an appropriate error status */
-    int status = (ri_requestInfo->m_parseResult == PARSE_SUCCESS) ?
-                 200 : parse_result_to_http_status(ri_requestInfo->m_parseResult);
+    int status = (ri->m_parseResult == PARSE_SUCCESS) ?
+                 200 : parse_result_to_http_status(ri->m_parseResult);
 
     const char* reason = (status == 200) ? "OK" : http_reason_phrase(status);
 
