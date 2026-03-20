@@ -4,8 +4,6 @@
     Author: Solomon
 */
 
-#include <cstddef>
-#include <iterator>
 #include <stddef.h>     // provides size_t
 #include <stdio.h>      // provides snprintf()
 #include <string.h>     // provides strcmp(), strncasecmp()
@@ -228,7 +226,7 @@ int write_status_line(REQUEST_INFO* ri, char* buffer, size_t iOffset)
 
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-int write_heades(REQUEST_INFO* ri, char* buffer, size_t iOffset)
+int write_headers(REQUEST_INFO* ri, char* buffer, size_t iOffset)
 {
     if (!ri || !buffer) return -1;
     

@@ -15,6 +15,7 @@ add_executable(my_project
     worker.c
     static_files.c
     http.c
+    response.c
 )
 
 # Include headers
