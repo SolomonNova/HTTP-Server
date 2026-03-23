@@ -1,6 +1,4 @@
-<video src="https://github.com/SolomonNova/HTTP-Server/blob/main/assets/demo.mp4?raw=true" controls="controls" style="max-width: 100%;">
-  Your browser does not support the video tag.
-</video>
+[![Watch the Demo](https://img.shields.io/badge/Video-Demo-blue?style=for-the-badge&logo=github)](https://github.com/SolomonNova/HTTP-Server/blob/main/assets/demo.mp4?raw=true)
 
 # HTTP-Server
 
